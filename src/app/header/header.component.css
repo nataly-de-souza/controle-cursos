@@ -1,0 +1,20 @@
+.header-linha {
+  height: 8px;
+  position: relative;
+  background: -webkit-gradient(linear, left top, right top, from(#94618E), to(#49274A)) no-repeat;
+}
+
+.header-ext {
+  height: 5px;
+  position: relative;
+  background: -webkit-gradient(linear, left top, right top, from(#49274A), to(#94618E)) no-repeat;
+}
+
+#titulo {
+  background-color: #49274A;
+  background: -webkit-gradient(linear, left top, right top, from(#49274A), to(#94618E)) no-repeat;
+ }
+
+ #mobile-demo {
+    background-color: #49274A;
+ }

@@ -1,0 +1,28 @@
+.card-head {
+    padding-top: 5px;
+    padding-right: 24px;
+    padding-bottom: 5px;
+    padding-left: 24px;
+    border-radius: 0 0 2px 2px;
+    background-color: #F8EEE7;
+}
+
+.valor-destaque {
+  background-color: #F4DECB;
+  border-top: 5px solid rgba(11, 2, 2, 0.2);
+  position: relative;
+  padding: 0px 24px;
+  font-size: 32px;
+  font-weight: bold;
+ }
+
+ #espaco {
+  height: 0px;
+ }
+
+
+
+
+
+
+
