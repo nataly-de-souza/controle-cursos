@@ -12,4 +12,5 @@ export class CardsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  horas = 5000;
 }
