@@ -1,7 +1,7 @@
 .card-head {
-    padding-top: 5px;
+    padding-top: 1px;
     padding-right: 24px;
-    padding-bottom: 5px;
+    padding-bottom: 1px;
     padding-left: 24px;
     border-radius: 0 0 2px 2px;
     background-color: #F8EEE7;
@@ -12,7 +12,7 @@
   border-top: 5px solid rgba(11, 2, 2, 0.2);
   position: relative;
   padding: 0px 24px;
-  font-size: 32px;
+  font-size: 25px;
   font-weight: bold;
  }
 
@@ -20,7 +20,12 @@
   height: 0px;
  }
 
-
+ p {
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-indent: 3ch;
+}
 
 
 
