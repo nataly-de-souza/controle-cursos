@@ -1,0 +1,81 @@
+<br>
+<h5 id ='textocentralizado'>CADASTRO DE CURSOS</h5>
+<h6 id ='textocentralizado'>ENTRE COM OS DADOS DO CURSO</h6>
+<br>
+<br>
+<div id="interna">
+  <div class="col s12">
+    <div id="msgs_cadastro" class="card=panel red white-text" style="display: none"></div>
+  </div>
+<div  class="row">
+  <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="input-descricao"
+               name="input-descricao"
+               type="text"
+               [(ngModel)]="this.curso.descricao"
+               class="validate"
+               pattern="^[a-z]+([\.-]?[a-z]+)*"
+               #descricao="ngModel"
+               required>
+        <label for="descricao">Descrição do Curso *</label>
+        <div class="red-text" [hidden]="descricao.valid || descricao.untouched">
+          O campo descrição é obrigatório
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="instituicao" type="text">
+        <label for="instituicao">Instituição</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col 12 s12">
+      <label>Categoria</label>
+      <select class="browser-default">
+        <option value="" disabled selected>Selecione a opção</option>
+        <option value="1">Curso Livre</option>
+        <option value="2">Ensino Superior</option>
+        <option value="3">Pós Graduação</option>
+      </select>
+
+    </div>
+
+    </div>
+    <div class="row">
+      <div class="input-field col s4">
+        <input id="incio_curso" type="text" mask="00/0000">
+        <label for="incio">Inicio</label>
+      </div>
+      <div class="input-field col s4">
+      </div>
+      <div class="input-field col s4">
+        <input id="fim_curso" type="text" mask="00/0000" >
+        <label for="fim_curso">Fim</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s4">
+        <input id="horas" type="text" mask="000000" >
+        <label for="horas">Horas</label>
+      </div>
+      <div class="input-field col s4">
+      </div>
+      <div class="input-field col s4">
+        <input type="text" name="investimento" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " [dropSpecialCharacters]="true" [showMaskTyped]="false">
+        <label for="investimento">Investimento</label>
+      </div>
+    </div>
+    <a routerLink="/">
+    <button
+    class="btn waves-effect waves-light amber darken-4"
+    type="button">Cadastrar
+  </button>
+</a>
+  </form>
+</div>
+</div>
+

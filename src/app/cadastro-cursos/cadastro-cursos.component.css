@@ -1,0 +1,8 @@
+#interna {
+  margin: 0 auto;
+  width: 80%; /* Valor da Largura */
+}
+
+#textocentralizado {
+  text-align: center;
+}
