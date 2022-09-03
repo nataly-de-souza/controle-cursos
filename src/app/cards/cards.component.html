@@ -9,7 +9,7 @@
              <p>HORAS INVESTIDAS</p>
            </div>
            <div class="valor-destaque" >
-             {{horas}}
+             {{horas_sum}}
            </div>
          </div>
        </div>
@@ -20,7 +20,7 @@
             <p>VALOR INVESTIDO</p>
           </div>
           <div class="valor-destaque">
-            R$ 2.000,00
+            {{investimento_sum | currency: "R$ "}}
           </div>
         </div>
       </div>
