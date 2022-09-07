@@ -11,6 +11,7 @@ import { CadastroCursosComponent } from './cadastro-cursos/cadastro-cursos.compo
 import { LandPageComponent } from './land-page/land-page.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

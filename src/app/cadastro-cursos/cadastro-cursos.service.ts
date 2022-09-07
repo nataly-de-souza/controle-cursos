@@ -1,3 +1,4 @@
+import { CadastroCursoPromiseService } from './services/cadastro-curso-promise.service';
 import { Constants } from 'src/app/util/constants';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,15 +12,25 @@ export class CursoStorageService {
 
   private cursoSource!: BehaviorSubject<number>;
 
-  constructor() {
+  constructor(private cadastroCursoPromiseService: CadastroCursoPromiseService) {
      this.cursos = WebStorageUtil.getArray(Constants.CURSOS_KEY);
      this.cursoSource = new BehaviorSubject<number>(this.cursos.length);
   }
 
-  save(curso: Curso) {
-    this.cursos = WebStorageUtil.getArray(Constants.CURSOS_KEY);
-    this.cursos.push(curso);
-    WebStorageUtil.set(Constants.CURSOS_KEY, this.cursos);
+  save(curso: Curso): Promise<any> {
+    const p = new Promise<any>((resolve, reject) => {
+
+      this.cadastroCursoPromiseService.save(curso);
+
+      //manter a forma antiga por enquanto
+      this.cursos = WebStorageUtil.getArray(Constants.CURSOS_KEY);
+      this.cursos.push(curso);
+      WebStorageUtil.set(Constants.CURSOS_KEY, this.cursos);
+
+  })
+
+  return p;
+
   }
 
   update(curso: Curso) {

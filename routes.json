@@ -1,0 +1,4 @@
+{
+  "/postagens": "/postagens",
+  "/postagens/:id": "/postagens/:id"
+}
