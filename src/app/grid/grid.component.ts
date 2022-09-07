@@ -1,4 +1,7 @@
+import { Constants } from 'src/app/util/constants';
+import { WebStorageUtil } from 'src/app/util/web-storage-util';
 import { Component, OnInit } from '@angular/core';
+import { Curso } from '../model/curso';
 
 @Component({
   selector: 'app-grid',
@@ -8,12 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class GridComponent implements OnInit {
 
   constructor() { }
+  cursos!: Curso[];
 
   ngOnInit(): void {
+    this.cursos = WebStorageUtil.getArray(Constants.CURSOS_KEY);
   }
 
-  new(): void {
-    window.alert("olha laaa o clique");
+  
+  onDelete(id: string) {
+    let confirmation = window.confirm(
+      'Tem certeza que deseja apagar esse registro? ');
+
+      if (!confirmation) {
+      return;
+    }
+
+
   }
 
 }

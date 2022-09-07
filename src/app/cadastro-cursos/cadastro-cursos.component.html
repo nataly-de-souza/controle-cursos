@@ -1,14 +1,26 @@
+<div
+  id="msg_cadastro"
+  class="card-panel white-text"
+  [class.red]="!this.isSuccess"
+  [class.green]="this.isSuccess"
+  *ngIf="this.isShowMessage"
+>
+{{this.message}}
+</div>
+
+<div *ngIf="!this.isSuccess" >
 <br>
 <h5 id ='textocentralizado'>CADASTRO DE CURSOS</h5>
 <h6 id ='textocentralizado'>ENTRE COM OS DADOS DO CURSO</h6>
 <br>
 <br>
+
 <div id="interna">
   <div class="col s12">
     <div id="msgs_cadastro" class="card=panel red white-text" style="display: none"></div>
   </div>
 <div  class="row">
-  <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit()">
+  <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit()" ngControler="form">
     <div class="row">
       <div class="input-field col s12">
         <input id="input-descricao"
@@ -16,66 +28,172 @@
                type="text"
                [(ngModel)]="this.curso.descricao"
                class="validate"
-               pattern="^[a-z]+([\.-]?[a-z]+)*"
                #descricao="ngModel"
-               required>
-        <label for="descricao">Descrição do Curso *</label>
+               required/>
+        <label for="input-descricao" class="active">Descrição do Curso *</label>
         <div class="red-text" [hidden]="descricao.valid || descricao.untouched">
           O campo descrição é obrigatório
         </div>
+        <span
+          class="helper-text"
+          data-error="O campo é inválido"
+          data-success="Ok!"
+        ></span>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="instituicao" type="text">
-        <label for="instituicao">Instituição</label>
+        <input id="input-instituicao"
+               name="input-instituicao"
+               type="text"
+               [(ngModel)]="this.curso.instituicao"
+               class="validate"
+               #instituicao="ngModel"
+               required/>
+        <label for="input-instituicao" class="active">Instituição</label>
+        <div class="red-text" [hidden]="instituicao.valid || instituicao.untouched">
+          O campo instituição é obrigatório
+        </div>
+        <span
+          class="helper-text"
+          data-error="O campo é inválido"
+          data-success="Ok!"
+        ></span>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col 12 s12">
-      <label>Categoria</label>
-      <select class="browser-default">
-        <option value="" disabled selected>Selecione a opção</option>
-        <option value="1">Curso Livre</option>
-        <option value="2">Ensino Superior</option>
-        <option value="3">Pós Graduação</option>
+  <div class="row" >
+      <div class="col s12">
+      <label for="categorias" class="active">Categoria *</label>
+       <select
+       class="validate"
+      [(ngModel)]="this.curso.categoria"
+      #categoria="ngModel"
+      #categoriaSelect
+      required
+      id="categoriaSelect"
+      name="categoriaSelect">
+      <option ngValue="" disabled selected>Selecione a opção</option>
+      <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria}}</option>
       </select>
-
+      <div class="red-text" [hidden]="categoria.valid || categoria.untouched">
+        O campo categoria é obrigatório
+      </div>
+      <span
+        class="helper-text"
+        data-error="O campo é inválido"
+        data-success="Ok!"
+      ></span>
+  </div>
     </div>
 
+   <div class="row">
+      <div class="input-field col s4">
+        <input id="input_inicio_curso"
+        name="input_inicio_curso"
+        type="text"
+        [(ngModel)]="this.curso.data_inicial"
+        class="validate"
+        pattern="((0[1-9]|1[0-2])/[12]\d{3})"
+        #inicio="ngModel"
+        [mask]="mask_date"
+        [dropSpecialCharacters]="false"
+        required/>
+        <label for="input_inicio_curso" class="active">Inicio</label>
+        <div class="red-text" [hidden]="inicio.valid || inicio.untouched ">
+          O campo inicio é obrigatório
+        </div>
+        <span
+          class="helper-text"
+          data-error="O campo é inválido"
+          data-success="Ok!"
+        ></span>
+      </div>
+
+      <div class="input-field col s4">
+      </div>
+      <div class="input-field col s4">
+        <input id="input_fim_curso"
+        name="input_fim_curso"
+        type="text"
+        [mask]="mask_date"
+        [dropSpecialCharacters]="false"
+        [(ngModel)]="this.curso.data_final"
+        class="validate"
+        pattern="((0[1-9]|1[0-2])/[12]\d{3})"
+        #fim="ngModel"
+        required/>
+        <label for="input_fim_curso" class="active">Fim</label>
+        <div class="red-text" [hidden]="fim.valid || fim.untouched ">
+          O campo fim é obrigatório
+        </div>
+        <span
+          class="helper-text"
+          data-error="O campo é inválido"
+          data-success="Ok!"
+        ></span>
+      </div>
     </div>
+
     <div class="row">
       <div class="input-field col s4">
-        <input id="incio_curso" type="text" mask="00/0000">
-        <label for="incio">Inicio</label>
+        <input id="input_horas"
+               type="text"
+               name="input_horas"
+               [(ngModel)]="this.curso.duracao"
+               #horas="ngModel"
+               class="validate"
+               pattern="[0-9]+"
+               required >
+        <label for="input_horas" class="active">Duração (horas)</label>
+        <div class="red-text" [hidden]="horas.valid || horas.untouched || horas.dirty">
+          O campo duração é obrigatório
+        </div>
+        <span
+          class="helper-text"
+          data-error="O campo é inválido"
+          data-success="Ok!"
+        ></span>
       </div>
       <div class="input-field col s4">
       </div>
+
       <div class="input-field col s4">
-        <input id="fim_curso" type="text" mask="00/0000" >
-        <label for="fim_curso">Fim</label>
+        <input type="text"
+        id="input_investimento"
+        name="input_investimento"
+        mask="separator.2"
+        class="validate"
+        [thousandSeparator]="'.'"
+        [decimalMarker]="','"
+        prefix="R$ "
+        [dropSpecialCharacters]="true"
+        [showMaskTyped]="false"
+        [(ngModel)]="this.curso.investimento"
+        #investimento="ngModel"
+        required>
+        <label for="input_investimento" class="active">Investimento</label>
+        <div class="red-text" [hidden]="investimento.valid || investimento.untouched">
+          O campo investimento é obrigatório
+        </div>
+        <span
+          class="helper-text"
+          data-error="O campo é inválido"
+          data-success="Ok!"
+        ></span>
       </div>
     </div>
-    <div class="row">
-      <div class="input-field col s4">
-        <input id="horas" type="text" mask="000000" >
-        <label for="horas">Horas</label>
-      </div>
-      <div class="input-field col s4">
-      </div>
-      <div class="input-field col s4">
-        <input type="text" name="investimento" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " [dropSpecialCharacters]="true" [showMaskTyped]="false">
-        <label for="investimento">Investimento</label>
-      </div>
-    </div>
-    <a routerLink="/">
-    <button
-    class="btn waves-effect waves-light amber darken-4"
-    type="button">Cadastrar
+
+    <button id="cor-button"
+    class="btn waves-effect"
+    type="submit" [disabled]="!form.valid"
+    >{{name_button}}
+    <a routerLink="/"></a>
   </button>
-</a>
+
   </form>
 </div>
 </div>
 
+</div>
+<!-- [disabled]="!form.valid" -->
