@@ -1,3 +1,4 @@
+import { WebStorageUtil } from 'src/app/util/web-storage-util';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,21 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
-  @Input() horas: number = 0;
-  @Input() investimento: number = 0;
-
   horas_sum: number = 0;
   investimento_sum: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.horas_sum = WebStorageUtil.total_horas_investidas();
+    this.investimento_sum = WebStorageUtil.total_valor_investido();
   }
 
   ngOnChanges(): void {
-    this.horas_sum = this.horas_sum + this.horas;
-    this.investimento_sum = this.investimento + this.investimento;
-    console.log("adkjahkdjhajskhdjkashdjkahdkjhasjkd")
+
   }
 
 }

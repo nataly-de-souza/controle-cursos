@@ -17,65 +17,21 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>Tecnologia em Desenvolvimento de Sistemas</td>
-          <td>UniSalesiano</td>
-          <td>Superior</td>
-          <td>02/2003</td>
-          <td>12/2005</td>
-          <td>590</td>
-          <td>40000</td>
-          <td hidden>1</td>
-          <td><a routerLink="/cadastrocursos/5">Editar</a></td>
-          <td>Excluir</td>
-        </tr>
-        <tr>
-          <td>Tecnologia em Desenvolvimento de Sistemas</td>
-          <td>UniSalesiano</td>
-          <td>Superior</td>
-          <td>02/2003</td>
-          <td>12/2005</td>
-          <td>590</td>
-          <td>40000</td>
-          <td hidden>1</td>
-          <td><a routerLink="/cadastrocursos/4">Editar</a></td>
-          <td>Excluir</td>
-        </tr>
-        <tr>
-          <td>Tecnologia em Desenvolvimento de Sistemas</td>
-          <td>UniSalesiano</td>
-          <td>Superior</td>
-          <td>02/2003</td>
-          <td>12/2005</td>
-          <td>590</td>
-          <td>40000</td>
-          <td hidden>1</td>
-          <td><a routerLink="/cadastrocursos/3">Editar</a></td>
-          <td>Excluir</td>
-        </tr>
-        <tr>
-          <td>Tecnologia em Desenvolvimento de Sistemas</td>
-          <td>UniSalesiano</td>
-          <td>Superior</td>
-          <td>02/2003</td>
-          <td>12/2005</td>
-          <td>590</td>
-          <td>40000</td>
-          <td hidden>1</td>
-          <td><a routerLink="/cadastrocursos/2">Editar</a></td>
-          <td>Excluir</td>
-        </tr>
-        <tr>
-          <td>Tecnologia em Desenvolvimento de Sistemas</td>
-          <td>UniSalesiano</td>
-          <td>Superior</td>
-          <td>02/2003</td>
-          <td>12/2005</td>
-          <td>590</td>
-          <td>40000</td>
-          <td hidden>1</td>
-          <td><a routerLink="/cadastrocursos/1">Editar</a></td>
-          <td>Excluir</td>
+        <tr *ngFor="let c of cursos">
+          <td>{{c.descricao | uppercase}}</td>
+          <td>{{c.instituicao | uppercase}}</td>
+          <td>{{c.categoria | uppercase}}</td>
+          <td>{{c.data_inicial}}</td>
+          <td>{{c.data_final}}</td>
+          <td>{{c.duracao}}</td>
+          <td>{{c.investimento}}</td>
+          <td hidden>{{c.id}}</td>
+          <td class="right">
+            <a  class="material-icons my-icon-size" style="cursor: pointer;" routerLink="/cadastrocursos/{{c.id}}">edit</a>
+          </td>
+          <td>
+            <a class="material-icons my-icon-size" style="cursor: pointer;" (click)="onDelete(c.id)">delete</a>
+          </td>
         </tr>
       </tbody>
     </table>
