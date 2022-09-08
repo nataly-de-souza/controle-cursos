@@ -1,24 +1,14 @@
 {
   "curso": [
     {
-      "id": 100,
-      "descricao": "aaaa",
-      "instituicao": "sale",
+      "id": "193",
+      "descricao": "e",
+      "instituicao": "ddd",
+      "categoria": "Ensino Superior",
       "data_inicial": "02/2022",
       "data_final": "03/2022",
-      "duracao": 122,
-      "categoria": "Ensino Superior",
-      "investimento": 455
-    },
-    {
-      "id": "411",
-      "descricao": "vai aparecer no arquivo",
-      "instituicao": "db.json",
-      "categoria": "Ensino Superior",
-      "data_inicial": "07/2023",
-      "data_final": "05/2025",
-      "duracao": "2121",
-      "investimento": 1542
+      "duracao": "0012121",
+      "investimento": 22121
     }
   ]
 }

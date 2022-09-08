@@ -1,8 +1,8 @@
-import { CadastroCursoPromiseService } from './../cadastro-cursos/services/cadastro-curso-promise.service';
-import { Constants } from 'src/app/util/constants';
-import { WebStorageUtil } from 'src/app/util/web-storage-util';
+import { Subject, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Curso } from '../model/curso';
+import { CursoStorageService } from '../cadastro-cursos/cadastro-cursos.service';
+
 
 @Component({
   selector: 'app-grid',
@@ -11,18 +11,18 @@ import { Curso } from '../model/curso';
 })
 export class GridComponent implements OnInit {
 
-  constructor(private cadastroCursoPromiseService: CadastroCursoPromiseService) { }
+  constructor(private cursoStorageService: CursoStorageService) { }
   cursos!: Curso[];
 
-  ngOnInit(): void {
-    this.cadastroCursoPromiseService.getAll().then((c: any) => {
-      this.cursos = c;
-    })
 
+  ngOnInit(): void {
+    this.carregar()
 
     //forma antiga
     // this.cursos = WebStorageUtil.getArray(Constants.CURSOS_KEY);
   }
+
+
 
 
   onDelete(id: string) {
@@ -33,7 +33,27 @@ export class GridComponent implements OnInit {
       return;
     }
 
+    this.cursoStorageService.delete(parseInt(id)).subscribe(
+      (data) => {
+        this.carregar()
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    
 
+  }
+
+  carregar() {
+    this.cursoStorageService.getAll().subscribe(
+      (data) => {
+        this.cursos = data;
+      },
+      (error) => {
+        alert(error);
+      }
+    );
   }
 
 }
