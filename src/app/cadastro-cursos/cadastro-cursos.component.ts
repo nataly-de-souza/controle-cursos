@@ -50,13 +50,21 @@ export class CadastroCursosComponent implements OnInit {
 
     Shared.initializeWebStorage();
     this.listaCategorias()
+    this.curso = new Curso();
 
-    if (this.isNew) {
-      this.curso = new Curso();
-    } else {
-      /* todo clonar por questão de endereço de memoria*/
-      this.curso = this.cursoService.getCurso(id);
-      this.name_button = 'ALTERAR'
+    if (!this.isNew) {
+
+      this.cursoService.getById(id).subscribe(
+        (data) => {
+          this.curso = data;
+        },
+        (error) => {
+          alert(error);
+        }
+      );
+      // forma antiga
+      //this.curso = this.cursoService.getCurso(id);
+       this.name_button = 'ALTERAR'
     }
   }
 
@@ -67,20 +75,44 @@ export class CadastroCursosComponent implements OnInit {
 
 
     if (this.isNew) {
-        this.cursoService.save(this.curso);
-        this.isSuccess = true;
-        this.isShowMessage = true;
-        this.message = 'Cadastro realizado com sucesso!';
-    } else {
-      this.cursoService.update(this.curso);
-      this.isSuccess = true;
-      this.isShowMessage = true;
-      this.message = 'Cadastro alterado com sucesso!';
+        //this.cursoService.save(this.curso);
 
+        this.cursoService.save(this.curso).subscribe(
+          (data) => {
+            console.log('asdsdssdsds')
+            this.message = 'Cadastro realizado com sucesso!';
+            this.isSuccess = true;
+            this.isShowMessage = true;
+            this.form.reset();
+            this.curso = new Curso();
+          },
+          (error) => {
+            this.isSuccess = false;
+            this.message = 'Ocorreu um erro ao inserir. Tente novamente!';
+            this.isShowMessage = true;
+          }
+        );
+    } else {
+
+      this.cursoService.update(this.curso).subscribe(
+        (data) => {
+          console.log('asdsdssdsds')
+          this.message = 'Cadastro alterado com sucesso!';
+          this.isSuccess = true;
+          this.isShowMessage = true;
+          this.form.reset();
+          this.curso = new Curso();
+        },
+        (error) => {
+          this.isSuccess = false;
+          this.message = 'Ocorreu um erro ao atualizar. Tente novamente!';
+          this.isShowMessage = true;
+        }
+      );
+      // this.cursoService.update(this.curso);
     }
 
-    this.form.reset();
-    this.curso = new Curso();
+
   }
 
   listaCategorias() {
