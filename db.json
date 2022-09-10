@@ -1,14 +1,3 @@
 {
-  "curso": [
-    {
-      "id": "193",
-      "descricao": "e",
-      "instituicao": "ddd",
-      "categoria": "Ensino Superior",
-      "data_inicial": "02/2022",
-      "data_final": "03/2022",
-      "duracao": "0012121",
-      "investimento": 22121
-    }
-  ]
+  "curso": []
 }
