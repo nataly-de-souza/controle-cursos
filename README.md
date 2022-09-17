@@ -3,6 +3,7 @@
 Este projeto tem como objetivo permitir a inclusão/alteração e exclusão de cursos, palestras, treinamentos realizados.
 
 # Endereço de Deploy - GitHub Pages
+https://nataly-de-souza.github.io/controle-cursos/inicio
 
 # Protótipo
 https://balsamiq.cloud/sx9n5u2/pj8or96/r00D4
